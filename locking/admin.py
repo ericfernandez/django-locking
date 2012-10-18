@@ -16,7 +16,7 @@ class LockableAdmin(admin.ModelAdmin):
 
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js', 
+            #'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js', 
             _s.STATIC_URL + 'locking/js/jquery.url.packed.js',
             _s.ADMIN_URL + "ajax/variables.js",
             _s.STATIC_URL + "locking/js/admin.locking.js?v=1"
@@ -99,7 +99,7 @@ class LockableAdmin(admin.ModelAdmin):
             return u'''
                 <a href="#" id=%s class="lock-status %s"
                    title="Locked By: %s">%s%s</a>''' % (output, class_name,
-                                     full_name, locked_until, " " + locked_by)
+                                     locked_by, locked_until, " " + locked_by)
         else:
             return ''
 

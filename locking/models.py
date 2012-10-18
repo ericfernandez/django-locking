@@ -104,7 +104,7 @@ class Lock(models.Model):
         If you want to extend a lock beyond its current expiry date, initiate
         a new lock using the ``lock_for`` method.
         """
-        _tue = timedelta(settings.LOCKING['time_until_expiration'])
+        _tue = timedelta(seconds=settings.LOCKING['time_until_expiration'])
         diff = _tue - (datetime.today() - self.locked_at)
         return (diff.days * 24 * 60 * 60) + diff.seconds
 
