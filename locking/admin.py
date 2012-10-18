@@ -60,6 +60,7 @@ class LockableAdmin(admin.ModelAdmin):
         interface use in admin list display like so:
         list_display = ['title', 'get_lock_for_admin']
         '''
+        from appsumo.common.template.defaultfilters import mediaurl 
 
         locked_by = ''
         class_name = 'unlocked'
@@ -85,18 +86,18 @@ class LockableAdmin(admin.ModelAdmin):
                 locked_until_self = _(
                     "You have a lock on this content for %s more minute(s)."
                     ) % (minutes_remaining)
+                page_edit_img_url = mediaurl('locking/img/page_edit.png')
                 locked_until = '''
-                    <img src="%slocking/img/page_edit.png"
-                    title="%s" />''' % (_s.STATIC_URL, locked_until_self)
+                    <img src="%s"
+                    title="%s" />''' % (page_edit_img_url, locked_until_self)
             else:
                 locked_until = _(
                     "Still locked for %s more minute(s) by %s."
                     ) % (minutes_remaining, lock.locked_by)
+                lock_img_url = mediaurl('locking/img/lock.png')
                 locked_until = '''
-                    <img src="%slocking/img/lock.png" title="%s" />'''\
-                    % (_s.STATIC_URL, locked_until)
-            full_name = "%s %s" % (
-                lock.locked_by.first_name,lock.locked_by.last_name)
+                    <img src="%s" title="%s" />'''\
+                    % (lock_img_url, locked_until)
             return u'''
                 <a href="#" id=%s class="lock-status %s"
                    title="Locked By: %s">%s%s</a>''' % (output, class_name,
