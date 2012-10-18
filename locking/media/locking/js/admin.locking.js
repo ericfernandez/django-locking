@@ -144,9 +144,9 @@ locking.admin = function() {
         // Displays a warning that the page is about to expire.
         var display_warning = function() {
             var promt_to_save = function() {
-                if (confirm(text.prompt_to_save)) {
-                    $('form input[type=submit][name=_continue]').click();
-                }
+                //if (confirm(text.prompt_to_save)) {
+                //    $('form input[type=submit][name=_continue]').click();
+                //}
             }
             var minutes = Math.round((settings.time_until_expiration - 
                 settings.time_until_warning) / 60);
